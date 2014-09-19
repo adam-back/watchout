@@ -48,10 +48,6 @@ body {
   stroke-width: 1.5px;
 }
 
-circle.enemy {
-  background-image: url("asteroid.png");\
-  r:;
-}
 /* your beautiful css styling goes here! */
 
 /* Note: an asteroid image is included in this repo.
