@@ -1,5 +1,56 @@
+body {
+  background: url(bo_play.png);
+}
+
+.container {
+  position: relative;
+  box-shadow: 0px 0px 10px rgba(0,0,0,1);
+  width: 700px;
+  background: white;
+  padding: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+
+.scoreboard {
+  padding: 10px;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background: #ddd;
+  text-align: right;
+  border-radius: 3px;
+}
+#scores span {
+  display: inline-block;
+  width: 50px;
+}
+
+.rule line {
+  stroke: #eee;
+  shape-rendering: crispEdges;
+}
+
+.rule line.axis {
+  stroke: #000;
+}
+
+.area {
+  fill: lightsteelblue;
+}
+
+.line, circle.area {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+/*circle.enemy {
+  background-image: url("asteroid.png");
+}*/
 /* your beautiful css styling goes here! */
 
-/* Note: an asteroid image is included in this repo. 
+/* Note: an asteroid image is included in this repo.
 Feel free to use it if you like. */
 
