@@ -18,6 +18,15 @@ body {
   background-size:100%;
 }
 
+.pira {
+-webkit-transform: rotate(360deg);
+  -webkit-animation-name:rotate;
+  -webkit-animation-duration:         0.5s;
+  -webkit-animation-iteration-count:  infinite;
+  -webkit-animation-timing-function: linear;
+  -webkit-transform-origin: 50% 50%;
+}
+
 .scoreboard {
   padding: 10px;
   position: absolute;
@@ -51,8 +60,11 @@ body {
   stroke-width: 1.5px;
 }
 
-/* your beautiful css styling goes here! */
-
-/* Note: an asteroid image is included in this repo.
-Feel free to use it if you like. */
-
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
