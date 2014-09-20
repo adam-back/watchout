@@ -83,6 +83,32 @@ var asteroidField = function(n) { //generates locations for each enemy in fleet
   return locData;
 };
 
+  //update the board
+
+var checkCollision = function(enemy, callback) {
+  return _(players).each(function(player) {
+    var radiusSum, separation, xDiff, yDiff;
+    radiusSum = parseFloat(enemy.attr('width')) + player.r;
+    xDiff = parseFloat(enemy.attr('x')) - player.x;
+    yDiff = parseFloat(enemy.attr('y')) - player.y;
+    separation = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
+    if (separation < radiusSum) {
+      return callback();
+    }
+  });
+};
+
+var onCollision = function() {
+  updateBestScore();
+  gameStats.score = 0;
+  return updateScore();
+};
+
+var score = function(currentScore) {
+  var num = +currentScore;
+  return ++num;
+};
+//if collision call on span
 createPlayer();
 
 var drag = d3.behavior.drag()
@@ -104,5 +130,15 @@ update(asteroidField(10)); // sets up inital state
 setInterval(function() {
   update(asteroidField(10));
 }, 1000);
+
+setInterval(function() {
+  var scoreFromDOM = d3.select('body').select('.current').select('span')
+    .text();
+  var updatedScore = score(scoreFromDOM);
+  d3.select('body').select('.current').select('span')
+    .text(updatedScore);;
+}, 1500);
+
+
 
 
