@@ -1,6 +1,6 @@
 // start slingin' some d3 here.
 var update = function(data) {
-  var board = d3.select("body").select("svg").selectAll("image.asteroid")
+  var board = d3.select("body").select("svg").selectAll("image.pira")
     .data(data)
 
     board.enter().append("image")
@@ -10,9 +10,9 @@ var update = function(data) {
     .attr("width", function() {
       return "50";
     })
-    .attr("class", "asteroid")
+    .attr("class", "pira")
     .attr("xlink:href", function() {
-      return "19-kitten.png";
+      return "pira.png";
     })
     //transition
     .transition()
@@ -30,9 +30,9 @@ var update = function(data) {
     .attr("width", function() {
       return "50";
     })
-    .attr("class", "asteroid")
+    .attr("class", "pira")
     .attr("xlink:href", function() {
-      return "asteroid.png";
+      return "pira.png";
     })
     .transition()
       .duration(1000)
@@ -49,27 +49,27 @@ var createPlayer = function() {
     d3.select('body').select('svg')
       .append("image")
         .attr("height", function() {
-          return "26";
+          return "52";
         })
         .attr("width", function() {
-          return "23";
+          return "46";
         })
         .attr("x", function(d) {
           return "350";
         })
       .attr("y", function(d) {
-          return "350";
+          return "191";
         })
-        .attr("class", "cat")
+        .attr("class", "adam")
         .attr("xlink:href", function() {
-          return "19-kitten.png";
+          return "adam.png";
         })
 };
 
 var asteroidLocation = function() { //generates one enemy location
   var tuple = []
-  tuple[0] = Math.floor(Math.random() * 675);
-  tuple[1] = Math.floor(Math.random() * 675);
+  tuple[0] = Math.floor(Math.random() * 650);
+  tuple[1] = Math.floor(Math.random() * 350);
   return tuple;
 };
 
@@ -88,21 +88,21 @@ createPlayer();
 var drag = d3.behavior.drag()
 
   .on('drag', function(d) {
-    if(d3.event.x > 0 && d3.event.x < 675) {
+    if(d3.event.x > 0 && d3.event.x < 650) {
       d3.select(this).attr("x" , d3.event.x);
     }
 
-    if(d3.event.y > 0 && d3.event.y < 675) {
+    if(d3.event.y > 0 && d3.event.y < 350) {
       d3.select(this).attr("y" ,d3.event.y);
     }
   });
 
-d3.select("body").select("svg").select(".cat").call(drag);
+d3.select("body").select("svg").select(".adam").call(drag);
 
-update(asteroidField(20)); // sets up inital state
+update(asteroidField(10)); // sets up inital state
 
 setInterval(function() {
-  update(asteroidField(20));
+  update(asteroidField(10));
 }, 1000);
 
 
