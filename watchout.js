@@ -11,15 +11,18 @@ var update = function(data) {
       return "50";
     })
     .attr("class", "asteroid")
-    .attr("x", function(d) {
-      return d[0];
-    })
-    .attr("y", function(d) {
-      return d[1];
-    })
     .attr("xlink:href", function() {
       return "asteroid.png";
     })
+    //transition
+    .transition()
+      .duration(1000)
+      .attr("x", function(d) {
+        return d[0];
+      })
+      .attr("y", function(d) {
+        return d[1];
+      });
 
     board.attr("height", function() {
       return "50";
@@ -28,16 +31,17 @@ var update = function(data) {
       return "50";
     })
     .attr("class", "asteroid")
-    .attr("x", function(d) {
-      return d[0];
-    })
-    .attr("y", function(d) {
-      return d[1];
-    })
     .attr("xlink:href", function() {
       return "asteroid.png";
     })
-    //transition
+    .transition()
+      .duration(1000)
+      .attr("x", function(d) {
+        return d[0];
+      })
+      .attr("y", function(d) {
+        return d[1];
+      });
 };
 
 var asteroidLocation = function() { //generates one enemy location
