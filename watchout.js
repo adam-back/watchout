@@ -85,28 +85,41 @@ var asteroidField = function(n) { //generates locations for each enemy in fleet
 
   //update the board
 
-var checkCollision = function(enemy, callback) {
-  return _(players).each(function(player) {
-    var radiusSum, separation, xDiff, yDiff;
-    radiusSum = parseFloat(enemy.attr('width')) + player.r;
-    xDiff = parseFloat(enemy.attr('x')) - player.x;
-    yDiff = parseFloat(enemy.attr('y')) - player.y;
+var checkCollision = function(player, enemies, callback) {
+  return _.each(enemies, function(asteroid, index, list) {
+    // var radiusSum;
+    var separation;
+    var xDiff;
+    var yDiff;
+    xDiff = parseFloat(asteroid[0] - player.attr('x'));
+    yDiff = parseFloat(asteroid[1] - player.attr('y'));
     separation = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
-    if (separation < radiusSum) {
+    if (separation < 96) { //if difference is less than player width + enemy width
       return callback();
     }
   });
 };
 
 var onCollision = function() {
-  updateBestScore();
-  gameStats.score = 0;
-  return updateScore();
+  updateHighScore();
+  d3.select('body').select('.current').select('span')
+    .text('0');
 };
 
 var score = function(currentScore) {
   var num = +currentScore;
   return ++num;
+};
+
+var updateHighScore = function() {
+  var currentVal = d3.select('body').select('.current').select('span').text();
+
+  var highScore = d3.select('body').select('.high').select('span').text();
+
+  if(+currentVal > +highScore) {
+    d3.select('body').select('.high').select('span')
+    .text(+currentVal);
+  }
 };
 //if collision call on span
 createPlayer();
@@ -128,7 +141,10 @@ d3.select("body").select("svg").select(".adam").call(drag);
 update(asteroidField(10)); // sets up inital state
 
 setInterval(function() {
-  update(asteroidField(10));
+  var newLocs = asteroidField(10)
+  update(newLocs);
+  // check for collisions
+  checkCollision(d3.select('body').select("svg").select('.adam'), newLocs, onCollision);
 }, 1000);
 
 setInterval(function() {
@@ -137,7 +153,7 @@ setInterval(function() {
   var updatedScore = score(scoreFromDOM);
   d3.select('body').select('.current').select('span')
     .text(updatedScore);;
-}, 1500);
+}, 80);
 
 
 
