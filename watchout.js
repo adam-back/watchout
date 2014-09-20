@@ -12,7 +12,7 @@ var update = function(data) {
     })
     .attr("class", "asteroid")
     .attr("xlink:href", function() {
-      return "asteroid.png";
+      return "19-kitten.png";
     })
     //transition
     .transition()
@@ -42,12 +42,34 @@ var update = function(data) {
       .attr("y", function(d) {
         return d[1];
       });
+
+};
+
+var createPlayer = function() {
+    d3.select('body').select('svg')
+      .append("image")
+        .attr("height", function() {
+          return "26";
+        })
+        .attr("width", function() {
+          return "23";
+        })
+        .attr("x", function(d) {
+          return "350";
+        })
+      .attr("y", function(d) {
+          return "350";
+        })
+        .attr("class", "draggable")
+        .attr("xlink:href", function() {
+          return "19-kitten.png";
+        })
 };
 
 var asteroidLocation = function() { //generates one enemy location
   var tuple = []
-  tuple[0] = Math.floor(Math.random() * 700);
-  tuple[1] = Math.floor(Math.random() * 700);
+  tuple[0] = Math.floor(Math.random() * 675);
+  tuple[1] = Math.floor(Math.random() * 675);
   return tuple;
 };
 
@@ -61,6 +83,7 @@ var asteroidField = function(n) { //generates locations for each enemy in fleet
   return locData;
 };
 
+createPlayer();
 update(asteroidField(20)); // sets up inital state
 
 setInterval(function() {
