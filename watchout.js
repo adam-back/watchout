@@ -104,6 +104,12 @@ var onCollision = function() {
   updateHighScore();
   d3.select('body').select('.current').select('span')
     .text('0');
+
+  var numOfCollision = d3.select('body').select('.collisions').select('span')
+      .text();
+
+  d3.select('body').select('.collisions').select('span')
+    .text(+numOfCollision + 1);
 };
 
 var score = function(currentScore) {
