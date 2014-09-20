@@ -1,9 +1,9 @@
 // start slingin' some d3 here.
 var update = function(data) {
-  d3.select("body").select("svg").selectAll("image.asteroid")
+  var board = d3.select("body").select("svg").selectAll("image.asteroid")
     .data(data)
-    .enter()
-    .append("image")
+
+    board.enter().append("image")
     .attr("height", function() {
       return "50";
     })
@@ -20,14 +20,25 @@ var update = function(data) {
     .attr("xlink:href", function() {
       return "asteroid.png";
     })
+
+    board.attr("height", function() {
+      return "50";
+    })
+    .attr("width", function() {
+      return "50";
+    })
+    .attr("class", "asteroid")
+    .attr("x", function(d) {
+      return d[0];
+    })
+    .attr("y", function(d) {
+      return d[1];
+    })
+    .attr("xlink:href", function() {
+      return "asteroid.png";
+    })
+    //transition
 };
-
-// debugger;
-
-// console.log(typeof asteroidField === "function");
-// console.log(asteroidField);
-// console.log(typeof update === "function");
-
 
 var asteroidLocation = function() { //generates one enemy location
   var tuple = []
@@ -39,12 +50,17 @@ var asteroidLocation = function() { //generates one enemy location
 var asteroidField = function(n) { //generates locations for each enemy in fleet
   var counter = 0;
   var locData = [];
-  while (counter <= n) {
+  while (counter < n) {
     locData.push(asteroidLocation());
     counter++;
   }
   return locData;
 };
 
-update(asteroidField(10));
+update(asteroidField(20)); // sets up inital state
+
+setInterval(function() {
+  update(asteroidField(20));
+}, 1000);
+
 
