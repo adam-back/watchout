@@ -60,7 +60,7 @@ var createPlayer = function() {
       .attr("y", function(d) {
           return "350";
         })
-        .attr("class", "draggable")
+        .attr("class", "cat")
         .attr("xlink:href", function() {
           return "19-kitten.png";
         })
@@ -84,6 +84,21 @@ var asteroidField = function(n) { //generates locations for each enemy in fleet
 };
 
 createPlayer();
+
+var drag = d3.behavior.drag()
+
+  .on('drag', function(d) {
+    if(d3.event.x > 0 && d3.event.x < 675) {
+      d3.select(this).attr("x" , d3.event.x);
+    }
+
+    if(d3.event.y > 0 && d3.event.y < 675) {
+      d3.select(this).attr("y" ,d3.event.y);
+    }
+  });
+
+d3.select("body").select("svg").select(".cat").call(drag);
+
 update(asteroidField(20)); // sets up inital state
 
 setInterval(function() {
