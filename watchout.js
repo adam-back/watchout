@@ -68,8 +68,8 @@ var createPlayer = function() {
 
 var asteroidLocation = function() { //generates one enemy location
   var tuple = []
-  tuple[0] = Math.floor(Math.random() * 650);
-  tuple[1] = Math.floor(Math.random() * 350);
+  tuple[0] = Math.floor(Math.random() * 680);
+  tuple[1] = Math.floor(Math.random() * 383);
   return tuple;
 };
 
