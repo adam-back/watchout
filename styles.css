@@ -1,5 +1,70 @@
-/* your beautiful css styling goes here! */
+body {
+  background: url(bo_play.png);
+}
 
-/* Note: an asteroid image is included in this repo. 
-Feel free to use it if you like. */
+.container {
+  position: relative;
+  box-shadow: 0px 0px 10px rgba(0,0,0,1);
+  width: 680px;
+  height: 352px;
+  background: white;
+  padding: 40px;
+  margin-top: 80px;
+  margin-bottom: 40px;
+  margin-left:auto;
+  margin-right:auto;
+  background-image: url("floor.png");
+  background-repeat:no-repeat;
+  background-size:100%;
+}
 
+.pira {
+-webkit-transform: rotate(360deg);
+  -webkit-animation-name:rotate;
+  -webkit-animation-duration:         0.5s;
+  -webkit-animation-iteration-count:  infinite;
+  -webkit-animation-timing-function: linear;
+  -webkit-transform-origin: 50% 50%;
+}
+
+.scoreboard {
+  padding: 10px;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background: #ddd;
+  text-align: right;
+  border-radius: 3px;
+}
+#scores span {
+  display: inline-block;
+  width: 50px;
+}
+
+.rule line {
+  stroke: #eee;
+  shape-rendering: crispEdges;
+}
+
+.rule line.axis {
+  stroke: #000;
+}
+
+.area {
+  fill: lightsteelblue;
+}
+
+.line, circle.area {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
